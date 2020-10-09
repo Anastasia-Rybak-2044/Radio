@@ -7,15 +7,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class RadioTest {
     @Test
     public void SetCurrentStation() {
-        Radio radio = new Radio(4, 12, 50);
+        Radio radio = new Radio(4, 10, 50);
         int expected = 4;
         assertEquals(expected, radio.getCurrentStation());
     }
     @Test
+    public void SetMinStation() {
+        Radio radio = new Radio(4,15, 50);
+        int expected = 0;
+        assertEquals(expected, radio.getMinStation());
+    }
+    @Test
     public void SetMaxStation() {
-        Radio radio = new Radio(4,9, 50);
-        int expected = 9;
+        Radio radio = new Radio(4,15, 50);
+        int expected = 15;
         assertEquals(expected, radio.getMaxStation());
+    }
+    @Test
+    public void SetMaxStationByDefault() {
+        Radio radio2 = new Radio();
+        int expected = 10;
+        assertEquals(expected, radio2.getMaxStationByDefault());
     }
     @Test
     public void increaseStation() {
@@ -33,16 +45,16 @@ class RadioTest {
     }
     @Test
     public void increaseStationOverMax() {
-        Radio radio = new Radio(9,15,50);
+        Radio radio = new Radio(15,15,50);
         radio.increaseStation();
         int expected = 0;
         assertEquals(expected, radio.getCurrentStation());
     }
     @Test
     public void decreaseStationBelowMin() {
-        Radio radio = new Radio(0,15,50);
+        Radio radio = new Radio(0,16,50);
         radio.decreaseStation();
-        int expected = 15;
+        int expected = 16;
         assertEquals(expected, radio.getCurrentStation());
     }
     @Test
@@ -89,15 +101,7 @@ class RadioTest {
     }
 
     @Test
-    void setMinStation() {
-    }
-
-    @Test
     void getMaxStation() {
-    }
-
-    @Test
-    void setMaxStation() {
     }
 
     @Test
@@ -118,14 +122,6 @@ class RadioTest {
 
     @Test
     void setMaxVolume() {
-    }
-
-    @Test
-    void getMaxUserStation() {
-    }
-
-    @Test
-    void testSetMaxUserStation() {
     }
 }
 
